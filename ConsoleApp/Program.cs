@@ -9,9 +9,9 @@ namespace ConsoleApp
         {
             using (PeopleContext context = new PeopleContext())
             {
-                //context.Database.EnsureDeleted();
+                context.Database.EnsureDeleted();
 
-                //context.Database.EnsureCreated();
+                context.Database.EnsureCreated();
 
                 var persons = new List<Person>()
                 {
@@ -26,8 +26,57 @@ namespace ConsoleApp
 
 
                 // TODO : Modifier le nom de "Robin" en "Stinson"
+
+                //-- 1ere solution --
+                var robin = context.People.First(p => p.FirstName == "Robin");
+
+                robin.LastName = "Stinson";
+
+                context.People.Update(robin);
+                context.SaveChanges();
+
+                //-- 2eme solution --
+                //persons[4].LastName = "Stinson";
+
+                //context.People.Update(persons[4]);
+                //context.SaveChanges();
+
+
+                //-- 3eme solution --
+                //var robin = new Person()
+                //{
+                //    Id = 5,
+                //    FirstName = "Robin",
+                //    LastName = "Stinson",
+                //    Age = 38
+                //};
+
+                //context.People.Update(robin);
+                //context.SaveChanges();
+
+
                 // TODO : Supprimer "Lily"
+
+                var lily = context.People.First(p => p.FirstName == "Lily");
+
+                context.People.Remove(lily);
+                context.SaveChanges();
+
                 // TODO : Ré-ajouter la personne supprimée (Lily)
+
+                //-- 1ere solution --
+                //persons[3].Id = 0;
+
+                //context.People.Add(persons[3]);
+                //context.SaveChanges();
+
+                //-- 2eme solution --
+
+                var lilyAgain = new Person() { FirstName = "Lily", LastName = "Aldrin", Age = 32 };
+                
+                context.People.Add(lilyAgain);
+                context.SaveChanges();
+
                 // TODO : Afficher toutes les personnes en les triant par Age,
                 //        puis par LastName, puis par FirstName
                 // TODO : Afficher la moyenne d'age de la liste

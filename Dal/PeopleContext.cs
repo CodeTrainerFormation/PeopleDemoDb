@@ -7,6 +7,7 @@ namespace Dal
     {
         #region DbSet
         public DbSet<Person> People { get; set; }
+        public DbSet<Classroom> Classrooms { get; set; }
         #endregion
 
         #region Constructors

@@ -124,7 +124,7 @@ namespace ConsoleApp
 
                 // -- good solution --
 
-                double average = context.People.Average(p => p.Age);
+                double average = context.People.Average(p => p.Age ?? 0);
 
                 // TODO : Afficher la personne avec l'ID égal à 5
 
@@ -208,6 +208,28 @@ namespace ConsoleApp
 
                 //    context.Database.CommitTransaction();
                 //}
+
+
+                // -- recap C# --
+
+                //string? str = null;
+
+                //if (str != null)
+                //{
+                //    str = str;
+                //}
+                //else
+                //{
+                //    str = "hello";
+                //}
+
+                //str = str != null ? str : "hello";
+
+                //str = str ?? "hello";
+
+                //str ??= "hello";
+
+                //string? s = str?.ToUpper();
 
             } //context.Dispose();
 
